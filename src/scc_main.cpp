@@ -66,10 +66,10 @@ int main(int args, char **argv)
     int numofV = g->vert_count;
     for (int i = 1; i < numofV; i++)
     {
-        if (i % 10000 == 0)
+        if (i % 1000000 == 0)
         {
-            int a = i / 10000;
-            cout << " 0.01m check:" << a ;
+            int a = i / 1000000;
+            cout << "1m check:" << a << endl;
         }
 
         for (int k = 0; k < 10; k++)
@@ -95,8 +95,9 @@ int main(int args, char **argv)
                 int outdegree = g->fw_beg_pos[cur_node + 1] - g->fw_beg_pos[cur_node];
                 if (outdegree == 0)
                 {
-                    cout << cur_node << "end";
-                    return 0;
+//                    cout << cur_node << "end";
+                    break;
+                    // return 0;
                 }
                 double rand_start = wtime();
                 int random_n = rand_r(&seed);
@@ -119,6 +120,8 @@ int main(int args, char **argv)
     cout << "total time spend:" << end_time - start_time << endl;
     cout << "total rand time spend:" << rand_time << endl;
     cout << "rand time percentage: " << rand_time / (end_time - start_time) * 100 << "%" << endl;
+    
+    return 0;
     //sort map
     //comparator lambda function
     auto comp = [](pair<int, int> a, pair<int, int> b)
