@@ -1,0 +1,38 @@
+args = 5
+Graph load (success): 4847571 verts, 68475391 edges 0.409712 second(s)
+ 0.01m check:1
+ 0.01m check:2
+ 0.01m check:3
+ 0.01m check:4
+
+total time spend:1219.57
+total rand time spend:37.6103
+rand time percentage: 3.08389%
+
+ Performance counter stats for './ispan /home/yuedeji/data/data/livejournal/fw_begin.bin /home/yuedeji/data/data/livejournal/fw_adjacent.bin /home/yuedeji/data/data/livejournal/bw_begin.bin /home/yuedeji/data/data/livejournal/bw_adjacent.bin':
+
+      1,220,338.50 msec task-clock:u              #    1.000 CPUs utilized
+                 0      context-switches:u        #    0.000 K/sec
+                 0      cpu-migrations:u          #    0.000 K/sec
+            68,081      page-faults:u             #    0.056 K/sec
+ 4,475,865,888,505      cycles:u                  #    3.668 GHz                      (30.77%)
+   784,643,274,612      instructions:u            #    0.18  insn per cycle           (38.46%)
+   233,507,873,110      branches:u                #  191.347 M/sec                    (38.46%)
+    35,008,736,622      branch-misses:u           #   14.99% of all branches          (38.46%)
+   242,786,505,629      L1-dcache-loads:u         #  198.950 M/sec                    (38.46%)
+    49,328,367,826      L1-dcache-load-misses:u   #   20.32% of all L1-dcache accesses  (38.46%)
+    25,521,241,190      LLC-loads:u               #   20.913 M/sec                    (30.77%)
+     8,995,174,702      LLC-load-misses:u         #   35.25% of all LL-cache accesses  (30.77%)
+   <not supported>      L1-icache-loads:u
+       134,351,013      L1-icache-load-misses:u                                       (30.77%)
+   242,824,344,909      dTLB-loads:u              #  198.981 M/sec                    (30.77%)
+     1,332,451,043      dTLB-load-misses:u        #    0.55% of all dTLB cache accesses  (30.77%)
+           229,001      iTLB-loads:u              #    0.188 K/sec                    (30.77%)
+           435,643      iTLB-load-misses:u        #  190.24% of all iTLB cache accesses  (30.77%)
+   <not supported>      L1-dcache-prefetches:u
+   <not supported>      L1-dcache-prefetch-misses:u
+
+    1220.457107036 seconds time elapsed
+
+    1211.355283000 seconds user
+       0.533108000 seconds sys

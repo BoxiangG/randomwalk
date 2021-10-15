@@ -1,0 +1,12 @@
+rm -rf ispan  scc_core.o scc_main.o load_print.o graph.o 
+"/usr/bin/g++"  -c scc_core.cpp -o scc_core.o -I. -fopenmp -O3
+"/usr/bin/g++"  -c scc_main.cpp -o scc_main.o -I. -fopenmp -O3
+"/usr/bin/g++"  -c load_print.cpp -o load_print.o -I. -fopenmp -O3
+"/usr/bin/g++"  -c graph.cpp -o graph.o -I. -fopenmp -O3
+"/usr/bin/g++"   scc_core.o scc_main.o load_print.o graph.o -o ispan -I. -fopenmp -O3
+args = 5
+Graph load (success): 4847571 verts, 68475391 edges 0.422084 second(s)
+1m check:0
+1m check:1
+1m check:2
+1m check:3

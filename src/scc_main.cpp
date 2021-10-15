@@ -9,6 +9,7 @@
 #include <functional>
 #include <bits/stdc++.h>
 #include <fstream>
+#include <omp.h>
 using namespace std;
 
 template <typename K, typename V>
@@ -64,33 +65,38 @@ int main(int args, char **argv)
     double rand_time = 0.0;
     double start_time = wtime();
     int numofV = g->vert_count;
-    for (int i = 1; i < numofV; i++)
+    // every vertex
+    for (int i = 0; i < numofV; i++)
+    //`for (int i = 0; i < 100; i++)
     {
         if (i % 1000000 == 0)
         {
             int a = i / 1000000;
             cout << "1m check:" << a << endl;
         }
-
-        for (int k = 0; k < 10; k++)
+        // # of walkers
+        #pragma omp parallel for num_threads(32)
+        for (int k = 0; k < 256; k++)
         {
-
+            vertex_t tid = omp_get_thread_num();
+//            printf("tid, %d\n", tid);
             if (g->fw_beg_pos[i + 1] - g->fw_beg_pos[i] == 0)
             {
                 continue;
             }
 
             int cur_node = i; //start node
-            if (umap.find(i) != umap.end())
-            {
-                umap[i] += 1;
-            }
-            else
-            {
-                umap[i] = 1;
-            }
-
-            for (int j = 1; j < steps; j++)
+//            if (umap.find(i) != umap.end())
+//            {
+//                umap[i] += 1;
+//            }
+//            else
+//            {
+//                umap[i] = 1;
+//            }
+            
+            // walk length
+            for (int j = 0; j < steps; j++)
             {
                 int outdegree = g->fw_beg_pos[cur_node + 1] - g->fw_beg_pos[cur_node];
                 if (outdegree == 0)
@@ -103,14 +109,14 @@ int main(int args, char **argv)
                 int random_n = rand_r(&seed);
                 rand_time += wtime() - rand_start;
                 int neighbor = g->fw_csr[g->fw_beg_pos[cur_node] + random_n % outdegree];
-                if (umap.find(neighbor) != umap.end())
-                {
-                    umap[neighbor] += 1;
-                }
-                else
-                {
-                    umap[neighbor] = 1;
-                }
+//                if (umap.find(neighbor) != umap.end())
+//                {
+//                    umap[neighbor] += 1;
+//                }
+//                else
+//                {
+//                    umap[neighbor] = 1;
+//                }
                 cur_node = neighbor;
             }
         }
@@ -148,10 +154,10 @@ int main(int args, char **argv)
     ofstream myFile("result.csv");
     priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(comp)> pq(comp);
 
-    for (auto &ij : umap)
-    {
-        pq.push(ij);
-    }
+//    for (auto &ij : umap)
+//    {
+//        pq.push(ij);
+//    }
     //printing the sorted map
     myFile << "vertex,frequent,outdegree\n";
     while (!pq.empty())
