@@ -9,7 +9,6 @@
 #include <functional>
 #include <bits/stdc++.h>
 #include <fstream>
-#include <omp.h>
 using namespace std;
 
 template <typename K, typename V>
@@ -62,110 +61,117 @@ int main(int args, char **argv)
     unsigned seed = (unsigned)time(NULL);
     map<int, int> umap;
     double end_time;
-    double rand_time = 0.0;
+    double write_time = 0.0;
     double start_time = wtime();
     int numofV = g->vert_count;
-    // every vertex
-    for (int i = 0; i < numofV; i++)
-    //`for (int i = 0; i < 100; i++)
+    int *result;
+    result = (int *)malloc(steps * sizeof(int));
+    ofstream myFile("result.txt");
+
+    for (int i = 1; i < 100000; i++)
     {
-        if (i % 1000000 == 0)
+        if (i % 10000 == 0)
         {
-            int a = i / 1000000;
-            cout << "1m check:" << a << endl;
+            int a = i / 10000;
+            cout << " 0.01m check:" << a ;
         }
-        // # of walkers
-        #pragma omp parallel for num_threads(32)
-        for (int k = 0; k < 256; k++)
+
+        for (int k = 0; k < 10; k++)
         {
-            vertex_t tid = omp_get_thread_num();
-//            printf("tid, %d\n", tid);
+
             if (g->fw_beg_pos[i + 1] - g->fw_beg_pos[i] == 0)
             {
                 continue;
             }
 
             int cur_node = i; //start node
-//            if (umap.find(i) != umap.end())
-//            {
-//                umap[i] += 1;
-//            }
-//            else
-//            {
-//                umap[i] = 1;
-//            }
-            
-            // walk length
-            for (int j = 0; j < steps; j++)
+            result[0] = i;
+            // if (umap.find(i) != umap.end())
+            // {
+            //     umap[i] += 1;
+            // }
+            // else
+            // {
+            //     umap[i] = 1;
+            // }
+
+            for (int j = 1; j < steps; j++)
             {
                 int outdegree = g->fw_beg_pos[cur_node + 1] - g->fw_beg_pos[cur_node];
                 if (outdegree == 0)
                 {
-//                    cout << cur_node << "end";
-                    break;
-                    // return 0;
+                    cout << cur_node << "end";
+                    return 0;
                 }
-                double rand_start = wtime();
                 int random_n = rand_r(&seed);
-                rand_time += wtime() - rand_start;
                 int neighbor = g->fw_csr[g->fw_beg_pos[cur_node] + random_n % outdegree];
-//                if (umap.find(neighbor) != umap.end())
-//                {
-//                    umap[neighbor] += 1;
-//                }
-//                else
-//                {
-//                    umap[neighbor] = 1;
-//                }
+                result[j] = neighbor;
+                // if (umap.find(neighbor) != umap.end())
+                // {
+                //     umap[neighbor] += 1;
+                // }
+                // else
+                // {
+                //     umap[neighbor] = 1;
+                // }
                 cur_node = neighbor;
             }
+            double tmp = wtime();
+            for (int i = 0; i < steps; i++)
+            {
+                myFile << result[i] << ",";
+            }
+            myFile << endl;
+            write_time += wtime() - tmp;
         }
     }
     cout << endl;
     end_time = wtime();
     cout << "total time spend:" << end_time - start_time << endl;
-    cout << "total rand time spend:" << rand_time << endl;
-    cout << "rand time percentage: " << rand_time / (end_time - start_time) * 100 << "%" << endl;
+    cout << "total wrte time spend:" << write_time << endl;
+    cout << "write time percentage: " << write_time / (end_time - start_time) * 100 << "%" << endl;
     
-    return 0;
-    //sort map
-    //comparator lambda function
-    auto comp = [](pair<int, int> a, pair<int, int> b)
-    {
-        //comparison logic
-        //if value is greater for the first element
-        //no need to swap
-        if (a.second > b.second)
-            return false;
-        //if value is less for the first element
-        //need to swap
-        else if (a.second < b.second)
-            return true;
-        else
-        { // when values are same
-            if (a.first < b.first)
-            {
-                return false;
-            }
-            else
-                return true;
-        }
-    };
-    ofstream myFile("result.csv");
-    priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(comp)> pq(comp);
+    //write query to file
 
-//    for (auto &ij : umap)
-//    {
-//        pq.push(ij);
-//    }
-    //printing the sorted map
-    myFile << "vertex,frequent,outdegree\n";
-    while (!pq.empty())
-    {
-        int node = pq.top().first;
-        myFile << node << "," << pq.top().second << "," << g->fw_beg_pos[node + 1] - g->fw_beg_pos[node] << endl;
-        pq.pop();
-    }
+
+    // //sort map
+    // //comparator lambda function
+    // auto comp = [](pair<int, int> a, pair<int, int> b)
+    // {
+    //     //comparison logic
+    //     //if value is greater for the first element
+    //     //no need to swap
+    //     if (a.second > b.second)
+    //         return false;
+    //     //if value is less for the first element
+    //     //need to swap
+    //     else if (a.second < b.second)
+    //         return true;
+    //     else
+    //     { // when values are same
+    //         if (a.first < b.first)
+    //         {
+    //             return false;
+    //         }
+    //         else
+    //             return true;
+    //     }
+    // };
+    // ofstream myFile("result.csv");
+    // priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(comp)> pq(comp);
+
+    // for (auto &ij : umap)
+    // {
+    //     pq.push(ij);
+    // }
+    // //printing the sorted map
+    // myFile << "vertex,frequent,outdegree\n";
+    // while (!pq.empty())
+    // {
+    //     int node = pq.top().first;
+    //     myFile << node << "," << pq.top().second << "," << g->fw_beg_pos[node + 1] - g->fw_beg_pos[node] << endl;
+    //     pq.pop();
+    // }
 
     return 0;
 }
