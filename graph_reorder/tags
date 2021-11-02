@@ -1,0 +1,101 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+$(exe)	Makefile	/^$(exe):$(objs)$/;"	t
+%.o	Makefile	/^%.o:%.cpp $(deps)$/;"	t
+COLOR_PROPAGATION_H	color_propagation.h	/^#define COLOR_PROPAGATION_H$/;"	d
+DEBUG	util.h	/^#define DEBUG /;"	d
+FW_BW_H	fw_bw.h	/^#define FW_BW_H$/;"	d
+INF	scc_core.cpp	/^#define INF /;"	d	file:
+INFTY	util.h	/^#define INFTY /;"	d
+LOCK	util.h	/^#define LOCK(/;"	d
+NEGATIVE	util.h	/^#define NEGATIVE /;"	d
+ORPHAN	util.h	/^#define ORPHAN	/;"	d
+OUTPUT_TIME	util.h	/^#define OUTPUT_TIME /;"	d
+SCC_COMMON_H	scc_common.h	/^#define SCC_COMMON_H$/;"	d
+TRIM_1_GFQ_H	trim_1_gfq.h	/^#define TRIM_1_GFQ_H$/;"	d
+TRIM_2_3_H	trim_2_3.h	/^#define TRIM_2_3_H$/;"	d
+TRIM_TIMES	util.h	/^#define TRIM_TIMES /;"	d
+UNLOCK	util.h	/^#define UNLOCK(/;"	d
+UNVIS	util.h	/^#define UNVIS	/;"	d
+VERBOSE	util.h	/^#define VERBOSE /;"	d
+__GRAPH_H__	graph.h	/^#define __GRAPH_H__$/;"	d
+__H_TIME__	wtime.h	/^#define __H_TIME__$/;"	d
+__UTIL_H__	util.h	/^#define __UTIL_H__$/;"	d
+bw_beg_pos	graph.h	/^		index_t *bw_beg_pos;$/;"	m	class:graph	typeref:typename:index_t *
+bw_bfs	fw_bw.h	/^inline void bw_bfs($/;"	f	typeref:typename:void
+bw_bfs_fq	fw_bw.h	/^inline void bw_bfs_fq($/;"	f	typeref:typename:void
+bw_bfs_fq_queue	fw_bw.h	/^inline void bw_bfs_fq_queue($/;"	f	typeref:typename:void
+bw_csr	graph.h	/^		vertex_t *bw_csr;$/;"	m	class:graph	typeref:typename:vertex_t *
+bw_gfq_from_fw	trim_1_gfq.h	/^inline static void bw_gfq_from_fw($/;"	f	typeref:typename:void
+cc	Makefile	/^cc = "$(shell which g++)" $/;"	m
+clean	Makefile	/^clean:$/;"	t
+color_identify	color_propagation.h	/^inline static void color_identify($/;"	f	typeref:typename:void
+color_init	color_propagation.h	/^inline static void color_init($/;"	f	typeref:typename:void
+color_propagation	color_propagation.h	/^inline static void color_propagation($/;"	f	typeref:typename:void
+color_statistic	color_propagation.h	/^inline static void color_statistic(index_t *scc_id,$/;"	f	typeref:typename:void
+color_t	util.h	/^typedef int color_t;$/;"	t	typeref:typename:int
+coloring_wcc	color_propagation.h	/^inline static void coloring_wcc($/;"	f	typeref:typename:void
+deal	batch_test_hong.sh	/^deal () {$/;"	f
+degree_rank	color_propagation.h	/^inline static void degree_rank($/;"	f	typeref:typename:void
+deps	Makefile	/^deps = $(wildcard ..\/..\/lib\/*.h) \\$/;"	m
+depth_t	util.h	/^typedef int depth_t;$/;"	t	typeref:typename:int
+edge_count	graph.h	/^		index_t edge_count;$/;"	m	class:graph	typeref:typename:index_t
+exe	Makefile	/^exe = ispan$/;"	m
+flags	Makefile	/^flags = -I. -fopenmp -O3$/;"	m
+fsize	util.h	/^inline off_t fsize(const char *filename) {$/;"	f	typeref:typename:off_t
+fw_beg_pos	graph.h	/^		index_t *fw_beg_pos;$/;"	m	class:graph	typeref:typename:index_t *
+fw_bfs	fw_bw.h	/^inline void fw_bfs($/;"	f	typeref:typename:void
+fw_bfs_fq	fw_bw.h	/^inline void fw_bfs_fq($/;"	f	typeref:typename:void
+fw_bfs_fq_queue	fw_bw.h	/^inline void fw_bfs_fq_queue($/;"	f	typeref:typename:void
+fw_csr	graph.h	/^		vertex_t *fw_csr;$/;"	m	class:graph	typeref:typename:vertex_t *
+gen_src	graph.h	/^		void gen_src(){};$/;"	f	class:graph	typeref:typename:void
+generate_frontier_queue	trim_1_gfq.h	/^inline static void generate_frontier_queue($/;"	f	typeref:typename:void
+get_queue	trim_1_gfq.h	/^inline static void get_queue($/;"	f	typeref:typename:void
+get_scc_result	load_print.cpp	/^void get_scc_result($/;"	f	typeref:typename:void
+gfq_from_queue	trim_1_gfq.h	/^inline static void gfq_from_queue($/;"	f	typeref:typename:void
+gfq_fw_bw_from_queue	trim_1_gfq.h	/^inline static void gfq_fw_bw_from_queue($/;"	f	typeref:typename:void
+graph	graph.cpp	/^graph::graph($/;"	f	class:graph
+graph	graph.h	/^		graph(){};$/;"	f	class:graph
+graph	graph.h	/^class graph$/;"	c
+graph_color	color_propagation.h	/^inline static void graph_color($/;"	f	typeref:typename:void
+graph_load	load_print.cpp	/^graph *graph_load($/;"	f	typeref:typename:graph *
+groupby	graph.h	/^		void groupby(){};$/;"	f	class:graph	typeref:typename:void
+index_t	util.h	/^typedef int index_t;$/;"	t	typeref:typename:int
+index_tt	graph.cpp	/^	typedef int index_tt;$/;"	t	function:graph::graph	typeref:typename:int	file:
+init_fw_sa	fw_bw.h	/^inline void init_fw_sa($/;"	f	typeref:typename:void
+main	scc_main.cpp	/^int main(int args, char **argv)$/;"	f	typeref:typename:int
+mice_fw_bw	fw_bw.h	/^inline void mice_fw_bw($/;"	f	typeref:typename:void
+objs	Makefile	/^objs = $(patsubst %.cpp,%.o,$(wildcard ..\/..\/lib\/*.cpp))\\$/;"	m
+openmp_wcc	openmp_wcc.hpp	/^openmp_wcc($/;"	f	typeref:typename:void
+path_t	util.h	/^typedef double path_t;$/;"	t	typeref:typename:double
+pivot_selection	scc_common.h	/^inline index_t pivot_selection($/;"	f	typeref:typename:index_t
+pivot_selection_from_fq	scc_common.h	/^inline index_t pivot_selection_from_fq($/;"	f	typeref:typename:index_t
+print_time_result	load_print.cpp	/^void print_time_result($/;"	f	typeref:typename:void
+scc_detection	scc_core.cpp	/^void scc_detection($/;"	f	typeref:typename:void
+src_count	graph.h	/^		index_t src_count;$/;"	m	class:graph	typeref:typename:index_t
+src_list	graph.h	/^		vertex_t *src_list;$/;"	m	class:graph	typeref:typename:vertex_t *
+test	Makefile	/^test:$(exe)$/;"	t
+trim_1_first	trim_1_gfq.h	/^inline void trim_1_first($/;"	f	typeref:typename:void
+trim_1_first_gfq	trim_1_gfq.h	/^inline void trim_1_first_gfq($/;"	f	typeref:typename:void
+trim_1_from_fq	trim_1_gfq.h	/^inline void trim_1_from_fq($/;"	f	typeref:typename:void
+trim_1_from_fq_gfq	trim_1_gfq.h	/^inline void trim_1_from_fq_gfq($/;"	f	typeref:typename:void
+trim_1_normal	trim_1_gfq.h	/^inline void trim_1_normal($/;"	f	typeref:typename:void
+trim_1_normal_gfq	trim_1_gfq.h	/^inline void trim_1_normal_gfq($/;"	f	typeref:typename:void
+trim_1_normal_only_size	trim_1_gfq.h	/^inline void trim_1_normal_only_size($/;"	f	typeref:typename:void
+trim_2_from_fq	trim_2_3.h	/^inline void trim_2_from_fq($/;"	f	typeref:typename:void
+trim_2_from_graph	trim_2_3.h	/^inline void trim_2_from_graph($/;"	f	typeref:typename:void
+trim_3_1_from_fq	trim_2_3.h	/^inline void trim_3_1_from_fq($/;"	f	typeref:typename:void
+trim_3_1_from_graph	trim_2_3.h	/^inline void trim_3_1_from_graph($/;"	f	typeref:typename:void
+trim_3_2_from_fq	trim_2_3.h	/^inline void trim_3_2_from_fq($/;"	f	typeref:typename:void
+trim_3_2_from_graph	trim_2_3.h	/^inline void trim_3_2_from_graph($/;"	f	typeref:typename:void
+vert_count	graph.h	/^		index_t vert_count;$/;"	m	class:graph	typeref:typename:index_t
+vertex_t	util.h	/^typedef int vertex_t;$/;"	t	typeref:typename:int
+vertex_tt	graph.cpp	/^	typedef int vertex_tt;$/;"	t	function:graph::graph	typeref:typename:int	file:
+weight	graph.h	/^		path_t *weight;$/;"	m	class:graph	typeref:typename:path_t *
+wtime	wtime.h	/^inline double wtime()$/;"	f	typeref:typename:double
+~graph	graph.h	/^		~graph(){};$/;"	f	class:graph
