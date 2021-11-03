@@ -62,150 +62,75 @@ int main(int args, char **argv)
     double end_time;
     double write_time = 0.0;
     double start_time = wtime();
-    int *result;
-    result = (int *)malloc(steps * sizeof(int));
-    vector<std::pair<int, int>> rank(v_count);
-    for (auto it = rank.begin(); it != rank.end(); it++)
-    {
-        it->first = 0;
-        it->second = it - rank.begin();
-    }
-    for (int i = 0; i < e_count; i++)
-    {
-        rank[g->fw_csr[i]].first += 1;
-    }
-    sort(rank.rbegin(), rank.rend());
-    int *old2new;
-    int *new2old;
-    old2new = (int *)malloc(v_count * sizeof(int));
-    new2old = (int *)malloc(v_count * sizeof(int));
-    int *new_fw_pos;
-    int *new_csr;
-    new_fw_pos = (int *)malloc(v_count * sizeof(int));
-    new_csr = (int *)malloc(e_count * sizeof(int));
 
-    for (int i = 0; i < v_count; i++)
-    {
-        new2old[i] = rank[i].second;
-        old2new[rank[i].second] = i;
-    }
-    // for (int i = 0; i < v_count; i++)
-    // {
-    //     cout << new2old[i] << " ";
-    // }
-    // cout << endl;
-    // for (int i = 0; i < v_count; i++)
-    // {
-    //     cout << old2new[i] << " ";
-    // }
-    // cout << endl;
-    new_fw_pos[0] = 0;
-    for (int i = 1; i < v_count; i++)
-    {
-        new_fw_pos[i] = new_fw_pos[i - 1] + rank[i - 1].first;
-        //g->fw_beg_pos[new2old[i-1]+1] - g->fw_beg_pos[new2old[i-1]];
 
-    }
-    int index = 0;
-    for (int i = 0; i < v_count; i++)
+    for (int i = 1; i < 100000; i++)
     {
-        for (int j = 0; j < rank[i].first; j++)
+        if (i % 10000 == 0)
         {
-            new_csr[index] = old2new[g->fw_csr[g->fw_beg_pos[new2old[i]]+j]];
-            index ++;
+            int a = i / 10000;
+            //cout << " 0.01m check:" << a ;
         }
-    }    
-    // for (int i = 0; i < v_count; i++)
-    // {
-    //     cout << new_fw_pos[i] << " ";
-    // }
-    // cout << endl;
-    // for (int i = 0; i < e_count; i++)
-    // {
-    //     cout << new_csr[i] << " ";
-    // }
-    // cout << endl;
 
-    // for (int i = 0; i < v_count; i++)
-    // {
-    //     cout << g->fw_beg_pos[i] << " ";
-    // }
-    // cout << endl;
-    // for (int i = 0; i < e_count; i++)
-    // {
-    //     cout << g->fw_csr[i] << " ";
-    // }
-    // cout << endl;
+        for (int k = 0; k < 10; k++)
+        {
 
-    // ofstream myFile("result.txt");
+            if (g->fw_beg_pos[i + 1] - g->fw_beg_pos[i] == 0)
+            {
+                continue;
+            }
 
-    // for (int i = 1; i < 100000; i++)
-    // {
-    //     if (i % 10000 == 0)
-    //     {
-    //         int a = i / 10000;
-    //         cout << " 0.01m check:" << a ;
-    //     }
+            int cur_node = i; //start node
+            //result[0] = i;
+            // if (umap.find(i) != umap.end())
+            // {
+            //     umap[i] += 1;
+            // }
+            // else
+            // {
+            //     umap[i] = 1;
+            // }
 
-    //     for (int k = 0; k < 10; k++)
-    //     {
+            for (int j = 1; j < steps; j++)
+            {
+                int outdegree = g->fw_beg_pos[cur_node + 1] - g->fw_beg_pos[cur_node];
+                if (outdegree == 0)
+                {
+                    cout << cur_node << "end";
+                    return 0;
+                }
+                int random_n = rand_r(&seed);
+                int neighbor = g->fw_csr[g->fw_beg_pos[cur_node] + random_n % outdegree];
+                //result[j] = neighbor;
+                // if (umap.find(neighbor) != umap.end())
+                // {
+                //     umap[neighbor] += 1;
+                // }
+                // else
+                // {
+                //     umap[neighbor] = 1;
+                // }
+                cur_node = neighbor;
+            }
+            // double tmp = wtime();
+            // for (int i = 0; i < steps; i++)
+            // {
+            //     myFile << result[i] << ",";
+            // }
+            // myFile << endl;
+            // write_time += wtime() - tmp;
+        }
+    }
+    //cout << endl;
+    end_time = wtime();
+    cout << "total time spend:" << end_time - start_time << endl;
+    //cout << "total wrte time spend:" << write_time << endl;
+    //cout << "write time percentage: " << write_time / (end_time - start_time) * 100 << "%" << endl;
 
-    //         if (g->fw_beg_pos[i + 1] - g->fw_beg_pos[i] == 0)
-    //         {
-    //             continue;
-    //         }
+    
 
-    //         int cur_node = i; //start node
-    //         result[0] = i;
-    //         // if (umap.find(i) != umap.end())
-    //         // {
-    //         //     umap[i] += 1;
-    //         // }
-    //         // else
-    //         // {
-    //         //     umap[i] = 1;
-    //         // }
-
-    //         for (int j = 1; j < steps; j++)
-    //         {
-    //             int outdegree = g->fw_beg_pos[cur_node + 1] - g->fw_beg_pos[cur_node];
-    //             if (outdegree == 0)
-    //             {
-    //                 cout << cur_node << "end";
-    //                 return 0;
-    //             }
-    //             int random_n = rand_r(&seed);
-    //             int neighbor = g->fw_csr[g->fw_beg_pos[cur_node] + random_n % outdegree];
-    //             result[j] = neighbor;
-    //             // if (umap.find(neighbor) != umap.end())
-    //             // {
-    //             //     umap[neighbor] += 1;
-    //             // }
-    //             // else
-    //             // {
-    //             //     umap[neighbor] = 1;
-    //             // }
-    //             cur_node = neighbor;
-    //         }
-    //         double tmp = wtime();
-    //         for (int i = 0; i < steps; i++)
-    //         {
-    //             myFile << result[i] << ",";
-    //         }
-    //         myFile << endl;
-    //         write_time += wtime() - tmp;
-    //     }
-    // }
-    // cout << endl;
-    // end_time = wtime();
-    // cout << "total time spend:" << end_time - start_time << endl;
-    // cout << "total wrte time spend:" << write_time << endl;
-    // cout << "write time percentage: " << write_time / (end_time - start_time) * 100 << "%" << endl;
-
-    //write query to file
-
-    // //sort map
-    // //comparator lambda function
+    //sort map
+    //comparator lambda function
     // auto comp = [](pair<int, int> a, pair<int, int> b)
     // {
     //     //comparison logic
@@ -227,7 +152,7 @@ int main(int args, char **argv)
     //             return true;
     //     }
     // };
-    // ofstream myFile("result.csv");
+    
     // priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(comp)> pq(comp);
 
     // for (auto &ij : umap)
