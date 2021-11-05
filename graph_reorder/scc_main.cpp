@@ -9,7 +9,13 @@
 #include <functional>
 #include <bits/stdc++.h>
 #include <fstream>
+#include <stdlib.h>
 using namespace std;
+
+int comparator (const void * p1, const void * p2)
+{
+  return (*(int*)p1 - *(int*)p2);
+}
 
 
 int main(int args, char **argv)
@@ -91,32 +97,44 @@ int main(int args, char **argv)
     {
         int old_index = new2old[i];
         int outdegree = g->fw_beg_pos[old_index+1] - g->fw_beg_pos[old_index];
+        //reorder
+        int *tmp;
+        tmp = (int *)malloc(outdegree * sizeof(int));
         for (int j = 0; j < outdegree; j++) 
         {
-            new_csr[index] = old2new[g->fw_csr[g->fw_beg_pos[old_index]+j]];
+            tmp[j] = old2new[g->fw_csr[g->fw_beg_pos[old_index]+j]];
+        }
+        qsort(tmp, outdegree, sizeof(int), comparator);
+        
+        for (int j = 0; j < outdegree; j++) 
+        {
+            new_csr[index] = tmp[j];
             index ++;
         }
+        free(tmp);
+
     }    
-    for (int i = 0; i < v_count; i++)
-    {
-        cout << new_fw_pos[i] << " ";
-    }
-    cout << endl;
-    for (int i = 0; i < e_count; i++)
-    {
-        cout << new_csr[i] << " ";
-    }
-    cout << endl;
+    // for (int i = 0; i < v_count; i++)
+    // {
+    //     cout << new_fw_pos[i] << " ";
+    // }
+    // cout << endl;
+    // for (int i = 0; i < e_count; i++)
+    // {
+    //     cout << new_csr[i] << " ";
+    // }
+    // cout << endl;
 
 
     int csr_index = 0;
     ofstream myFile("reordered_graph.txt");
+    myFile << "% " << v_count << " " << e_count<<endl;
     for (int i = 0; i < v_count; i++)
     {
         int outdegree = new_fw_pos[i+1]-new_fw_pos[i];
         for (int j = 0; j < outdegree; j++)
         {
-            myFile << i << "    " << new_csr[csr_index] << endl;
+            myFile << i << " " << new_csr[csr_index] << endl;
             csr_index += 1;
         }
         
