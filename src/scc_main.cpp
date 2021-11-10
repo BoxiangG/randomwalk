@@ -9,6 +9,7 @@
 #include <functional>
 #include <bits/stdc++.h>
 #include <fstream>
+#include <omp.h>
 using namespace std;
 
 // template <typename K, typename V>
@@ -64,14 +65,15 @@ int main(int args, char **argv)
     double start_time = wtime();
 
 
-    for (int i = 1; i < 100000; i++)
+//    for (int i = 1; i < 100000; i++)
+    #pragma omp parallel for num_threads(32)
+    for (int i = 1; i < v_count; i++)
     {
-        if (i % 10000 == 0)
-        {
-            int a = i / 10000;
-            //cout << " 0.01m check:" << a ;
-        }
-
+//        if (i % 10000 == 0)
+//        {
+//            int a = i / 10000;
+//            //cout << " 0.01m check:" << a ;
+//        }
         for (int k = 0; k < 10; k++)
         {
 
@@ -96,8 +98,9 @@ int main(int args, char **argv)
                 int outdegree = g->fw_beg_pos[cur_node + 1] - g->fw_beg_pos[cur_node];
                 if (outdegree == 0)
                 {
-                    cout << cur_node << "end";
-                    return 0;
+                    break;
+//                    cout << cur_node << "end";
+//                    return 0;
                 }
                 int random_n = rand_r(&seed);
                 int neighbor = g->fw_csr[g->fw_beg_pos[cur_node] + random_n % outdegree];

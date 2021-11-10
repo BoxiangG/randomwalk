@@ -10,3 +10,8 @@ Graph load (success): 4847571 verts, 68475391 edges 0.422084 second(s)
 1m check:1
 1m check:2
 1m check:3
+1m check:4
+
+total time spend:2790.41
+total rand time spend:1674.79
+rand time percentage: 60.0196%

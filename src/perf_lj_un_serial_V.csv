@@ -1,0 +1,27 @@
+Performance counter stats for './ispan /home/yuedeji/data/data/livejournal_undirected/fw_begin.bin /home/yuedeji/data/data/livejournal_undirected/fw_adjacent.bin /home/yuedeji/data/data/livejournal_undirected/bw_begin.bin /home/yuedeji/data/data/livejournal_undirected/bw_adjacent.bin':
+
+        634,374.00 msec task-clock:u              #    1.000 CPUs utilized
+                 0      context-switches:u        #    0.000 K/sec
+                 0      cpu-migrations:u          #    0.000 K/sec
+             9,031      page-faults:u             #    0.014 K/sec
+ 2,304,809,075,934      cycles:u                  #    3.633 GHz                      (30.77%)
+   201,303,009,680      instructions:u            #    0.09  insn per cycle           (38.46%)
+    25,837,169,304      branches:u                #   40.729 M/sec                    (38.46%)
+        57,316,926      branch-misses:u           #    0.22% of all branches          (38.46%)
+    46,512,711,024      L1-dcache-loads:u         #   73.321 M/sec                    (38.46%)
+    11,479,074,592      L1-dcache-load-misses:u   #   24.68% of all L1-dcache accesses  (38.46%)
+     8,536,097,245      LLC-loads:u               #   13.456 M/sec                    (30.77%)
+     5,094,624,150      LLC-load-misses:u         #   59.68% of all LL-cache accesses  (30.77%)
+   <not supported>      L1-icache-loads:u
+         3,863,389      L1-icache-load-misses:u                                       (30.77%)
+    46,513,381,078      dTLB-loads:u              #   73.322 M/sec                    (30.77%)
+         6,434,654      dTLB-load-misses:u        #    0.01% of all dTLB cache accesses  (30.77%)
+           424,072      iTLB-loads:u              #    0.668 K/sec                    (30.77%)
+            38,850      iTLB-load-misses:u        #    9.16% of all iTLB cache accesses  (30.77%)
+   <not supported>      L1-dcache-prefetches:u
+   <not supported>      L1-dcache-prefetch-misses:u
+
+     634.395358119 seconds time elapsed
+
+     629.743336000 seconds user
+       0.460309000 seconds sys

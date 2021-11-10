@@ -1,0 +1,27 @@
+Performance counter stats for './ispan /home/yuedeji/data/data/livejournal_undirected_reorder/fw_begin.bin /home/yuedeji/data/data/livejournal_undirected_reorder/fw_adjacent.bin /home/yuedeji/data/data/livejournal_undirected_reorder/bw_begin.bin /home/yuedeji/data/data/livejournal_undirected_reorder/bw_adjacent.bin':
+
+      7,195,204.69 msec task-clock:u              #   29.540 CPUs utilized
+                 0      context-switches:u        #    0.000 K/sec
+                 0      cpu-migrations:u          #    0.000 K/sec
+            20,461      page-faults:u             #    0.003 K/sec
+23,561,910,420,571      cycles:u                  #    3.275 GHz                      (30.77%)
+   201,457,558,568      instructions:u            #    0.01  insn per cycle           (38.46%)
+    25,943,267,848      branches:u                #    3.606 M/sec                    (38.46%)
+        56,810,642      branch-misses:u           #    0.22% of all branches          (38.46%)
+    51,809,203,231      L1-dcache-loads:u         #    7.201 M/sec                    (38.46%)
+    17,108,061,069      L1-dcache-load-misses:u   #   33.02% of all L1-dcache accesses  (38.46%)
+    10,708,767,482      LLC-loads:u               #    1.488 M/sec                    (30.77%)
+     5,508,347,237      LLC-load-misses:u         #   51.44% of all LL-cache accesses  (30.77%)
+   <not supported>      L1-icache-loads:u
+        49,002,018      L1-icache-load-misses:u                                       (30.77%)
+    51,864,182,240      dTLB-loads:u              #    7.208 M/sec                    (30.77%)
+        29,733,004      dTLB-load-misses:u        #    0.06% of all dTLB cache accesses  (30.77%)
+         1,574,487      iTLB-loads:u              #    0.219 K/sec                    (30.77%)
+         4,721,051      iTLB-load-misses:u        #  299.85% of all iTLB cache accesses  (30.77%)
+   <not supported>      L1-dcache-prefetches:u
+   <not supported>      L1-dcache-prefetch-misses:u
+
+     243.578575774 seconds time elapsed
+
+    7145.094911000 seconds user
+       0.723132000 seconds sys

@@ -1,0 +1,31 @@
+args = 5
+Graph load (success): 5204175 verts, 97884084 edges 0.842827 second(s)
+total time spend:14.9304
+
+Performance counter stats for './ispan /home/yuedeji/data/data/livejournal_undirected_reorder/fw_begin.bin /home/yuedeji/data/data/livejournal_undirected_reorder/fw_adjacent.bin /home/yuedeji/data/data/livejournal_undirected_reorder/bw_begin.bin /home/yuedeji/data/data/livejournal_undirected_reorder/bw_adjacent.bin':
+
+         15,779.79 msec task-clock:u              #    1.000 CPUs utilized
+                 0      context-switches:u        #    0.000 K/sec
+                 0      cpu-migrations:u          #    0.000 K/sec
+             3,748      page-faults:u             #    0.238 K/sec
+    47,546,482,735      cycles:u                  #    3.013 GHz                      (30.76%)
+     4,013,840,950      instructions:u            #    0.08  insn per cycle           (38.45%)
+       513,202,115      branches:u                #   32.523 M/sec                    (38.45%)
+         1,267,055      branch-misses:u           #    0.25% of all branches          (38.46%)
+       966,110,043      L1-dcache-loads:u         #   61.225 M/sec                    (38.47%)
+       240,934,850      L1-dcache-load-misses:u   #   24.94% of all L1-dcache accesses  (38.47%)
+       168,774,973      LLC-loads:u               #   10.696 M/sec                    (30.77%)
+       106,155,990      LLC-load-misses:u         #   62.90% of all LL-cache accesses  (30.77%)
+   <not supported>      L1-icache-loads:u
+         2,207,618      L1-icache-load-misses:u                                       (30.77%)
+       960,037,999      dTLB-loads:u              #   60.840 M/sec                    (30.77%)
+           465,322      dTLB-load-misses:u        #    0.05% of all dTLB cache accesses  (30.77%)
+                32      iTLB-loads:u              #    0.002 K/sec                    (30.77%)
+             2,122      iTLB-load-misses:u        # 6631.25% of all iTLB cache accesses  (30.76%)
+   <not supported>      L1-dcache-prefetches:u
+   <not supported>      L1-dcache-prefetch-misses:u
+
+      15.780664273 seconds time elapsed
+
+      15.037112000 seconds user
+       0.552619000 seconds sys
